@@ -1,0 +1,4 @@
+Session.vim
+tmp*
+venv
+__pycache__

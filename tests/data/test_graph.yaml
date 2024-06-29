@@ -1,0 +1,61 @@
+apiVersion: truevoid.dev/v1alpha1
+kind: ComposableGraph
+metadata:
+  name: example-composable-graph
+spec:
+  initialData:
+    value: 10
+  operations:
+    - name: g1
+      function: dagster_composable_graphs.jobs.return_and_multiply
+    - name: g2
+      function: dagster_composable_graphs.jobs.return_and_multiply
+    - name: report_add
+      function: dagster_composable_graphs.jobs.result_report
+    - name: report_multiply
+      function: dagster_composable_graphs.jobs.result_report
+    - name: report2
+      function: dagster_composable_graphs.jobs.result_report
+    - name: calc
+      function: dagster_composable_graphs.jobs.calculate_multiply
+    - name: anm
+      function: dagster_composable_graphs.jobs.combined_multiply
+    - name: log_add
+      function: dagster_composable_graphs.jobs.log_value
+    - name: log_multiply
+      function: dagster_composable_graphs.jobs.log_value
+    - name: log_g1
+      function: dagster_composable_graphs.jobs.log_value
+    - name: log_g2
+      function: dagster_composable_graphs.jobs.log_value
+  dependencies:
+    - name: report_add
+      inputs:
+        - node: anm
+          pointer: /add
+    - name: report_multiply
+      inputs:
+        - node: anm
+          pointer: /multiply
+    - name: report2
+      inputs:
+        - node: g1
+    - name: calc
+      inputs:
+        - value
+    - name: anm
+      inputs:
+        - value
+        - node: calc
+    - name: log_add
+      inputs:
+        - node: report_add
+    - name: log_multiply
+      inputs:
+        - node: report_multiply
+    - name: log_g1
+      inputs:
+        - node: report2
+    - name: log_g2
+      inputs:
+        - node: g2
