@@ -6,7 +6,7 @@ import cloudflare from "@astrojs/cloudflare";
 // https://astro.build/config
 export default defineConfig({
   integrations: [starlight({
-    title: "Dagster Composable Graphs",
+    title: "Composable Graphs",
     social: {
       github:
         "https://github.com/truevoid-development/dagster-composable-graphs",

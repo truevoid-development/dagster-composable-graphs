@@ -55,7 +55,7 @@ spec:
           pointer: /multiply
 ```
 
-Results in the job:
+Results in the following job, visualized using dagster webserver UI:
 
 <p align="center">
     <img width="512" src="docs/src/assets/graph.png">
