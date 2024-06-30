@@ -58,5 +58,5 @@ spec:
 Results in the job:
 
 <p align="center">
-    <img width="256" height="256" src="docs/src/assets/graph.png">
+    <img width="300" src="docs/src/assets/graph.png">
 </p>
