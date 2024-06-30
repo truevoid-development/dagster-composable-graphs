@@ -17,14 +17,20 @@ jobs:
           python-version: 3.12
       - name: Install dependencies
         run: |
+          python -m venv venv
+          source venv/bin/activate
+
           python -m pip install poetry ruff
           poetry install
       - name: Ruff check
         run: |
+          source venv/bin/activate
+
           ruff check
       - name: Run tests
         run: |
-          poetry env use
+          source venv/bin/activate
+
           pytest | tee pytest-coverage.txt
           cat pytest-coverage.txt
       - name: Pytest coverage comment
