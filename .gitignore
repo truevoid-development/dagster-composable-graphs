@@ -5,3 +5,4 @@ __pycache__
 coverage.xml
 report.xml
 .coverage
+dist

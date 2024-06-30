@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "example"
+version = "0.1.0"
+description = "Example package to showcase dagster composable graphs"
+authors = ["Francisco Garcia Florez <francisco@truevoid.dev>"]
+readme = "README.md"
+packages = [{ include = "example" }]
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.13"
+dagster-webserver = "^1.7.4"
+dagster-composable-graphs = { path = ".." }
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pyright]
+include = ["dagster_composable_graphs"]
+exclude = ["build"]
+
+[tool.dagster]
+module_name = "example.code_location"

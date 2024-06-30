@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "dagster-composable-graphs"
 version = "0.1.0"
-description = ""
+description = "Library to create Dagster jobs from YAML"
 authors = ["Francisco Garcia Florez <francisco@truevoid.dev>"]
 readme = "README.md"
 packages = [{ include = "dagster_composable_graphs" }]
@@ -14,7 +14,6 @@ pyyaml = "^6.0.1"
 jsonpointer = "^3.0.0"
 
 [tool.poetry.group.dev.dependencies]
-dagster-webserver = "^1.7.4"
 docformatter = "^1.7.5"
 ipython = "^8.24.0"
 pytest = "^8.2.0"
@@ -31,9 +30,6 @@ build-backend = "poetry.core.masonry.api"
 [tool.pyright]
 include = ["dagster_composable_graphs"]
 exclude = ["build"]
-
-[tool.dagster]
-module_name = "example.code_location"
 
 [tool.ruff]
 fix = true

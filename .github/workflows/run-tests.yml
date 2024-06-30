@@ -17,10 +17,11 @@ jobs:
           python-version: 3.12
       - name: Install dependencies
         run: |
+          python -m pip install poetry ruff
+
           python -m venv venv
           source venv/bin/activate
 
-          python -m pip install poetry ruff
           poetry install
       - name: Ruff check
         run: |
@@ -32,3 +33,14 @@ jobs:
           source venv/bin/activate
 
           pytest --cov-fail-under=100
+      - name: Run example
+        run: |
+          cd example
+
+          python -m venv venv
+          source venv/bin/activate
+
+          poetry install
+          dagster dev &
+
+          sleep 20
