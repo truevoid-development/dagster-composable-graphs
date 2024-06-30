@@ -13,6 +13,8 @@ This library provides additional functionality to define dagster jobs from a
 file in `.yaml` format and may be used with any other package that integrates
 with dagster.
 
+Visit [the documentation here](https://docs.truevoid.dev).
+
 Partially inspired by post *Abstracting Pipelines for Analysts with a YAML DSL*
 [on the dagster blog](https://dagster.io/blog/simplisafe-case-study).
 
