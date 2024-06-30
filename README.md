@@ -1,8 +1,8 @@
-# Dagster Composable Graphs
-
 <p align="center">
     <img width="256" height="256" src="docs/src/assets/logo.svg">
 </p>
+
+# Dagster Composable Graphs
 
 [Dagster](https://github.com/dagster-io/dagster) is a cloud-native data
 pipeline orchestrator for the whole development lifecycle, with integrated
@@ -12,6 +12,9 @@ testability.
 This library provides additional functionality to define dagster jobs from a
 file in `.yaml` format and may be used with any other package that integrates
 with dagster.
+
+Partially inspired by post *Abstracting Pipelines for Analysts with a YAML DSL*
+[on the dagster blog](https://dagster.io/blog/simplisafe-case-study).
 
 ## Example
 

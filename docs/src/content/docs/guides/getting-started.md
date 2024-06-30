@@ -3,8 +3,6 @@ title: Getting Started
 description: Example package that creates a dagster job from YAML
 ---
 
-## Introduction
-
 This guide describes in detail the contents of the `example` package [on Github](https://github.com/truevoid-development/dagster-composable-graphs/tree/feat/add-docs/example)
 and introduces dagster concepts.
 
@@ -29,7 +27,7 @@ have two important qualities that enable several potential new uses:
 Considering these immediate advantages, the sections below introduce how to
 define a job in dagster and using a composable graph.
 
-## Defining a job
+## Define a job
 
 In dagster an [op](https://docs.dagster.io/concepts/ops-jobs-graphs/ops#ops) is
 the smallest unit of computation. Each op is executed separately and is the
@@ -92,7 +90,7 @@ dagster dev -f code_location.py
 
 Opening then dagster on a browser shows the job we just created.
 
-## Defining a composable graph
+## Define a composable graph
 
 Instead of defining the job as Python code we instead write a file in `.yaml`
 format with a certain schema. The job above would be defined as:
