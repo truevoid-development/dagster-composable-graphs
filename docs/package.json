@@ -1,0 +1,22 @@
+{
+  "name": "docs",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "cf-preview": "wrangler pages dev ./dist"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.7.0",
+    "@astrojs/cloudflare": "^11.0.1",
+    "@astrojs/starlight": "^0.24.5",
+    "@expressive-code/plugin-line-numbers": "^0.35.3",
+    "astro": "^4.10.2",
+    "sharp": "^0.32.5",
+    "typescript": "^5.5.2"
+  }
+}

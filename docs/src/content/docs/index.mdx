@@ -1,0 +1,31 @@
+---
+title: Composable Graphs
+description: See documentation here
+template: splash
+hero:
+  tagline: Create dagster jobs from anywhere
+  image:
+    file: ../../assets/logo.svg
+  actions:
+    - text: Read the documentation
+      link: /overview
+      icon: right-arrow
+      variant: primary
+    - text: Try dagster
+      link: https://dagster.io
+      icon: external
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+<CardGrid stagger>
+	<Card title="Dagster jobs everywhere" icon="seti:json">
+		Dynamic dagster jobs from any language that supports YAML.
+	</Card>
+	<Card title="Get started" icon="seti:pipeline">
+		Read the [Getting Started](/guides/example) guide.
+	</Card>
+	<Card title="See the code" icon="github">
+		Access the repository [on Github](https://github.com/truevoid-development/dagster-composable-graphs).
+	</Card>
+</CardGrid>

@@ -1,3 +1,7 @@
+<p align="center">
+    <img width="256" height="256" src="docs/src/assets/logo.svg">
+</p>
+
 # Dagster Composable Graphs
 
 [Dagster](https://github.com/dagster-io/dagster) is a cloud-native data
@@ -6,8 +10,13 @@ lineage and observability, a declarative programming model, and best-in-class
 testability.
 
 This library provides additional functionality to define dagster jobs from a
-file in `.yaml` format. This library may be used with any other package that
-integrates with dagster.
+file in `.yaml` format and may be used with any other package that integrates
+with dagster.
+
+Visit [the documentation here](https://docs.truevoid.dev).
+
+Partially inspired by post *Abstracting Pipelines for Analysts with a YAML DSL*
+[on the dagster blog](https://dagster.io/blog/simplisafe-case-study).
 
 ## Example
 
@@ -51,6 +60,8 @@ spec:
           pointer: /multiply
 ```
 
-Results in the job:
+Results in the following job, visualized using dagster webserver UI:
 
-![example-job](assets/images/graph.png)
+<p align="center">
+    <img width="512" src="docs/src/assets/graph.png">
+</p>
