@@ -1,6 +1,8 @@
 # Dagster Composable Graphs
 
-![logo](docs/src/assets/logo.svg)
+<p align="center">
+    ![logo](docs/src/assets/logo.svg | width=256)
+</p>
 
 [Dagster](https://github.com/dagster-io/dagster) is a cloud-native data
 pipeline orchestrator for the whole development lifecycle, with integrated
