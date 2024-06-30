@@ -57,4 +57,6 @@ spec:
 
 Results in the job:
 
-![example-job](assets/images/graph.png | width=256)
+<p align="center">
+    <img width="256" height="256" src="docs/src/assets/graph.png">
+</p>
