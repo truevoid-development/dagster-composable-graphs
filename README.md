@@ -6,7 +6,8 @@ lineage and observability, a declarative programming model, and best-in-class
 testability.
 
 This library provides additional functionality to define dagster jobs from a
-file in `.yaml` format.
+file in `.yaml` format. This library may be used with any other package that
+integrates with dagster.
 
 ## Example
 
