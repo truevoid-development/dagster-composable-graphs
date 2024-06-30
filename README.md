@@ -10,8 +10,8 @@ lineage and observability, a declarative programming model, and best-in-class
 testability.
 
 This library provides additional functionality to define dagster jobs from a
-file in `.yaml` format. This library may be used with any other package that
-integrates with dagster.
+file in `.yaml` format and may be used with any other package that integrates
+with dagster.
 
 ## Example
 
@@ -57,4 +57,4 @@ spec:
 
 Results in the job:
 
-![example-job](assets/images/graph.png)
+![example-job](assets/images/graph.png | width=256)
