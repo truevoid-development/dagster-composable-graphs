@@ -3,7 +3,7 @@ kind: ComposableGraph
 metadata:
   name: concatenate-graphs
 spec:
-  initialData:
+  inputs:
     x: 2.0
     y: 5.0
   operations:

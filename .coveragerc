@@ -1,0 +1,18 @@
+[paths]
+source =
+    src
+
+[run]
+source = dagster_composable_graphs
+omit = tests/* example/*
+branch = true
+parallel = false
+concurrency = multiprocessing
+
+[report]
+precision = 2
+skip_empty = true
+show_missing = true
+
+[html]
+show_contexts = true

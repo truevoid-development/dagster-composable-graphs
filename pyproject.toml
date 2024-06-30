@@ -22,6 +22,7 @@ pytest-cov = "^5.0.0"
 pytest-env = "^1.1.3"
 pytest-mock = "^3.14.0"
 ruff = "^0.4.2"
+pylint = "^3.2.5"
 
 [build-system]
 requires = ["poetry-core"]
@@ -43,15 +44,21 @@ line-length = 101
 indent-width = 4
 
 [tool.ruff.lint]
-extend-select = [
-  "D",  # pydocstyle
-  "I",  # import sort/remove
-  "UP", # pyupgrade
+select = [
+  "B",   # flake8-bugbear
+  "D",   # pydocstyle
+  "E",   # pycodestyle
+  "F",   # Pyflakes
+  "I",   # import sort/remove
+  "PL",  # pylint
+  "UP",  # pyupgrade
+  "W",   # pycodestyle
+  "SIM", # flake8-simplify
 ]
 extend-fixable = ["B"]
 
 # Ignore certain rules
-ignore = ["D100", "D104", "D202", "D205", "D400", "D401", "D404"]
+ignore = ["D100", "D104", "D202"]
 
 # Allow unused variables when underscore-prefixed.
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
@@ -73,14 +80,6 @@ wrap-summaries = 79
 wrap-descriptions = 79
 close-quotes-on-newline = true
 
-[tool.pytest]
-addopts = [
-  "--pdbcls=IPython.terminal.debugger:TerminalPdb",
-  "--cov",
-  "--cov={[metadata]name}",
-  "--cov-context=test",
-  "--cov-report html",
-  "--cov-report term",
-  "--cov-report xml",
-  "--junitxml=report.xml",
-]
+[tool.pytest.ini_options]
+console_output_style = "progress"
+addopts = "--pdbcls=IPython.terminal.debugger:TerminalPdb --cov --cov=dagster-composable-graphs --cov-context=test --cov-report html --cov-report term --cov-report xml --junitxml=report.xml"

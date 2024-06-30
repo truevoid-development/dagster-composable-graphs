@@ -2,3 +2,6 @@ Session.vim
 tmp*
 venv
 __pycache__
+coverage.xml
+report.xml
+.coverage

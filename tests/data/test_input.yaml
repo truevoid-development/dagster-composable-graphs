@@ -1,0 +1,14 @@
+apiVersion: truevoid.dev/v1alpha1
+kind: ComposableGraph
+metadata:
+  name: test-input-data
+spec:
+  inputs:
+    x: 5
+    y: 10
+  operations:
+    - name: multiply
+      function: tests.package.graphs.multiply
+  dependencies:
+    - name: multiply
+      inputs: [x, y]

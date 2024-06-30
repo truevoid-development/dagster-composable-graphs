@@ -1,0 +1,18 @@
+apiVersion: truevoid.dev/v1alpha1
+kind: ComposableGraph
+metadata:
+  name: test-multiple-ouputs
+spec:
+  inputs: {}
+  operations:
+    - name: return_multiple
+      function: tests.package.graphs.return_multiple_graph
+    - name: multiply
+      function: tests.package.graphs.multiply
+  dependencies:
+    - name: multiply
+      inputs:
+        - node: return_multiple
+          pointer: /out0
+        - node: return_multiple
+          pointer: /out1
