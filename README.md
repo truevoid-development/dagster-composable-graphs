@@ -8,7 +8,14 @@ testability.
 This library provides additional functionality to define dagster jobs from a
 file in `.yaml` format.
 
-For example, the following definition
+## Example
+
+Consider the following definition of a `ComposableGraph`. Notice in particular
+sections `inputs`, `operations` and `dependencies`. Respectively these define
+the graph inputs, which dagster
+[ops](https://docs.dagster.io/concepts/ops-jobs-graphs/ops#ops) or
+[graphs](https://docs.dagster.io/concepts/ops-jobs-graphs/graphs#op-graphs) are
+part of the job, and their dependencies.
 
 ```yaml
 apiVersion: truevoid.dev/v1alpha1
