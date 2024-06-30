@@ -1,7 +1,7 @@
 # Dagster Composable Graphs
 
 <p align="center">
-    ![logo](docs/src/assets/logo.svg | width=256)
+    <img width="256" height="256" src="docs/src/assets/logo.svg">
 </p>
 
 [Dagster](https://github.com/dagster-io/dagster) is a cloud-native data
