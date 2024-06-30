@@ -41,10 +41,7 @@ export default defineConfig({
     }),
   ],
   output: "hybrid",
-  adapter: cloudflare({
-    imageService: "passthrough",
-    platformProxy: { enabled: true },
-  }),
+  adapter: cloudflare({}),
   vite: {
     ssr: {
       // This should be removed once Starlight's SSR support is released
