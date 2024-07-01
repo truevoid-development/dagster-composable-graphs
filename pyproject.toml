@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "dagster-composable-graphs"
-version = "0.1.0"
+version = "0.1.1"
 description = "Library to create Dagster jobs from YAML"
 authors = ["Francisco Garcia Florez <francisco@truevoid.dev>"]
 readme = "README.md"
@@ -9,7 +9,7 @@ packages = [{ include = "dagster_composable_graphs" }]
 [tool.poetry.dependencies]
 dagster = "^1.7.4"
 pydantic = ">=2.7.1"
-python = ">=3.11,<3.13"
+python = ">=3.10,<3.13"
 pyyaml = "^6.0.1"
 jsonpointer = "^3.0.0"
 
