@@ -29,9 +29,15 @@ def input_op_builder(name: str, static_value: Dict[str, Any]) -> dagster.OpDefin
         The generated dagster `OpDefinition`.
     """
 
+    op_outs = {k: dagster.Out(type(v)) for k, v in static_value.items()}
+
+    if len(op_outs) == 1:
+        # A dummy output is added so that the output of this op is always a dictionary.
+        op_outs |= {"dummy_value": dagster.Out(dagster.Nothing)}
+
     @dagster.op(
         name=to_snake_case(name),
-        out={k: dagster.Out(type(v)) for k, v in static_value.items()},
+        out=op_outs,
         config_schema={
             k: dagster.Field(type(v), default_value=v, is_required=False)
             for k, v in static_value.items()

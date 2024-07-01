@@ -33,3 +33,13 @@ def test_multiple_outputs() -> None:
     execution = job.execute_in_process()
 
     assert execution.output_for_node("multiply") == 35  # noqa: PLR2004
+
+
+def test_single_input() -> None:
+    """Tests creation of a job with a single input."""
+
+    job = compose_job(load_graph_def_from_yaml(data_path / "test_single_input.yaml"))
+
+    execution = job.execute_in_process()
+
+    assert execution.output_for_node("multiply") == 25  # noqa: PLR2004
