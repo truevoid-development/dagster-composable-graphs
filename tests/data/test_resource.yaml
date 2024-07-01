@@ -1,0 +1,11 @@
+apiVersion: truevoid.dev/v1alpha1
+kind: ComposableGraph
+metadata:
+  name: test-resource
+spec:
+  operations:
+    - name: use_resource
+      function: tests.package.graphs.op_that_uses_resource
+  resources:
+    - name: test_resource
+      import: tests.package.graphs.TestResource
