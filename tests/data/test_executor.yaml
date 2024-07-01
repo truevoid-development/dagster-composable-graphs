@@ -1,0 +1,14 @@
+apiVersion: truevoid.dev/v1alpha1
+kind: ComposableGraph
+metadata:
+  name: test-executor
+spec:
+  inputs:
+    x: 3
+  operations:
+    - name: multiply
+      function: tests.package.graphs.multiply
+  dependencies:
+    - name: multiply
+      inputs: [x, x]
+  executor: dagster.multiprocess_executor

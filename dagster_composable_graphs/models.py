@@ -1,5 +1,5 @@
 import dataclasses
-from typing import Any, ClassVar, Dict, List, Literal, Tuple
+from typing import Any, ClassVar, Dict, List, Literal, Optional, Tuple
 
 import dagster
 import pydantic
@@ -22,6 +22,10 @@ class Metadata(ApplicationModel):
     """Metadata information for a graph."""
 
     name: str = pydantic.Field(description="Name of the graph.")
+    annotations: Dict[str, str] = pydantic.Field(
+        description="Unstructured key-value map used to populate the job tags.",
+        default_factory=dict,
+    )
 
 
 class OperationDef(ApplicationModel):
@@ -49,13 +53,35 @@ class DependencyDefinition(ApplicationModel):
     )
 
 
+class ResourceDefinition(ApplicationModel):
+    """Definition of a reference to a resource definition."""
+
+    name: str = pydantic.Field(description="Name of the resource as used by ops in the job.")
+    import_field: str = pydantic.Field(
+        description="Importable path to the resource.", alias="import"
+    )
+
+
 class GraphSpec(ApplicationModel):
     """Specification of a graph."""
 
-    inputs: Dict[str, Any] = pydantic.Field(description="Inputs for the graph.")
-    operations: List[OperationDef] = pydantic.Field(description="List of operations in the graph.")
+    description: Optional[str] = pydantic.Field(
+        description="Description of the composed job.", default=None
+    )
+    inputs: Dict[str, Any] = pydantic.Field(
+        description="Inputs for the graph.", default_factory=dict
+    )
+    operations: List[OperationDef] = pydantic.Field(
+        description="List of operations in the graph.", default_factory=list
+    )
     dependencies: List[DependencyDefinition] = pydantic.Field(
-        description="List of dependencies between operations."
+        description="List of dependencies between operations.", default_factory=list
+    )
+    resources: List[ResourceDefinition] = pydantic.Field(
+        description="Resources used in the job.", default_factory=list
+    )
+    executor: Optional[str] = pydantic.Field(
+        description="Importable path to the executor used in this job.", default=None
     )
 
 
@@ -75,3 +101,5 @@ class Graph:
     initial_data: Dict[str, Any]
     operations: Dict[str, dagster.GraphDefinition | dagster.OpDefinition]
     dependencies: Dict[str, List[Tuple[str, str | None]]]
+    resources: Dict[str, dagster.ResourceDefinition | dagster.ConfigurableResource]
+    executor: Optional[dagster.ExecutorDefinition]

@@ -31,7 +31,7 @@ def to_snake_case(input_string: str) -> str:
     return string
 
 
-def load_function(function_path: str) -> Callable[..., Any]:
+def import_object(function_path: str) -> Callable[..., Any]:
     """
     Return a dynamically loaded function from the given path.
 
