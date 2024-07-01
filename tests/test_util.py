@@ -2,7 +2,7 @@ import re
 
 import pytest
 
-from dagster_composable_graphs.util import load_function, to_snake_case
+from dagster_composable_graphs.util import import_object, to_snake_case
 
 
 def _is_valid_snake_case(string: str):
@@ -56,25 +56,25 @@ def test_to_snake_case(input_string: str, expected_output: str) -> None:
     ), f"Output '{result}' is not in snake_case (contains uppercase after first character)"
 
 
-def test_load_function() -> None:
-    """Test all branches of function `load_function`."""
+def test_import_object() -> None:
+    """Test all branches of function `import_object`."""
 
     # Test successful function loading
-    loaded_func = load_function("os.path.join")
+    loaded_func = import_object("os.path.join")
     assert callable(loaded_func)
     assert loaded_func.__name__ == "join"
 
     # Test ImportError
     with pytest.raises(ImportError, match="Could not import module 'non_existent_module'"):
-        load_function("non_existent_module.some_function")
+        import_object("non_existent_module.some_function")
 
     # Test AttributeError
     with pytest.raises(
         AttributeError, match="Function 'non_existent_function' not found in module 'os'"
     ):
-        load_function("os.non_existent_function")
+        import_object("os.non_existent_function")
 
     # Test function with multiple module parts
-    loaded_func = load_function("os.path.join")
+    loaded_func = import_object("os.path.join")
     assert callable(loaded_func)
     assert loaded_func.__name__ == "join"

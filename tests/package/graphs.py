@@ -30,3 +30,16 @@ def return_multiple_graph() -> Dict[str, int]:
     """Return multiple outputs from a graph."""
 
     return return_multiple()
+
+
+class TestResource(dagster.ConfigurableResource):
+    """Stores an attribute."""
+
+    attr: int = 3
+
+
+@dagster.op()
+def op_that_uses_resource(test_resource: TestResource) -> int:
+    """Return the attribute of the resource."""
+
+    return test_resource.attr

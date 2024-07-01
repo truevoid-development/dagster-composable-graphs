@@ -43,7 +43,7 @@ def several_calls():
 ```
 
 Extending this idea further, we may consider the number of calls to
-`return_five` to not be fixed. It may instead depend on a value obtained from
+`return_five` to not be fixed. It may instead depend on a value obta\ffined from
 elsewhere. To this end a new function is introduced as:
 
 ```python

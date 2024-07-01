@@ -13,33 +13,54 @@ from .models import (
     Graph,
     GraphDefinition,
 )
-from .util import load_function, to_snake_case
+from .util import import_object, to_snake_case
 
 
-def load_definition(
+def load_operation(
     function_path: str,
 ) -> dagster.GraphDefinition | dagster.OpDefinition:
     """
     Return a dynamically loaded dagster op or graph definition from the given path.
 
     Dynamically loads a dagster `GraphDefinition` or `OpDefinition` in the
-    provided `function_path`. See Documentation of function `load_function` for
+    provided `function_path`. See Documentation of function `import_object` for
     more details.
-
-    Arguments
-    ---------
-    function_path : str
-        Path to the function in `package.module.function` format.
-
-    Returns
-    -------
-    dagster.GraphDefinition | dagster.OpDefinition
-        The graph or op definition.
     """
 
-    graph_def = load_function(function_path)
-    assert isinstance(graph_def, (dagster.GraphDefinition, dagster.OpDefinition))
-    return graph_def
+    operation = import_object(function_path)
+    assert isinstance(operation, (dagster.GraphDefinition, dagster.OpDefinition)), (
+        f"Loaded object from `{function_path}` must be of type `GraphDefinition` or "
+        f"`OpDefinition`. Instead its type is `{type(operation)}`."
+    )
+    return operation
+
+
+def load_resource(
+    function_path: str,
+) -> dagster.ResourceDefinition | dagster.ConfigurableResource:
+    """Return a dynamically loaded dagster resource definition from the given path."""
+
+    resource = import_object(function_path)
+    assert issubclass(resource, dagster.ConfigurableResource) or isinstance(
+        resource, dagster.ResourceDefinition
+    ), (
+        f"Loaded object from `{function_path}` must be of type `ResourceDefinition` or "
+        f"inherit from `ConfigurableResource`. Instead its type is `{type(resource)}`."
+    )
+    return resource
+
+
+def load_executor(
+    function_path: str,
+) -> dagster.ExecutorDefinition:
+    """Return a dynamically loaded dagster executor definition from the given path."""
+
+    executor = import_object(function_path)
+    assert isinstance(executor, dagster.ExecutorDefinition), (
+        f"Loaded object from `{function_path}` must be of type `ExecutorDefinition`. "
+        f"Instead its type is `{type(executor)}`."
+    )
+    return executor
 
 
 def dictify_graph_output(out: Any, key: str = DEFAULT_OUTPUT_KEY_NAME) -> Dict[str, Any]:
@@ -95,7 +116,12 @@ def create_graph_from_def(graph_def: GraphDefinition) -> Graph:
         The processed graph.
     """
 
-    operations = {op.name: load_definition(op.function) for op in graph_def.spec.operations}
+    operations = {op.name: load_operation(op.function) for op in graph_def.spec.operations}
+    resources = {res.name: load_resource(res.import_field)() for res in graph_def.spec.resources}
+
+    executor = None
+    if graph_def.spec.executor is not None:
+        executor = load_executor(graph_def.spec.executor)
 
     dependencies = {}
     for dep in graph_def.spec.dependencies:
@@ -109,7 +135,11 @@ def create_graph_from_def(graph_def: GraphDefinition) -> Graph:
         dependencies[dep.name] = node_deps
 
     return Graph(
-        operations=operations, dependencies=dependencies, initial_data=graph_def.spec.inputs
+        operations=operations,
+        dependencies=dependencies,
+        initial_data=graph_def.spec.inputs,
+        resources=resources,
+        executor=executor,
     )
 
 
@@ -225,7 +255,13 @@ def compose_job(graph_def: GraphDefinition) -> dagster.JobDefinition:
 
     graph = create_graph_from_def(graph_def)
 
-    @dagster.job(name=to_snake_case(graph_def.metadata.name))
+    @dagster.job(
+        name=to_snake_case(graph_def.metadata.name),
+        description=graph_def.spec.description,
+        tags=graph_def.metadata.annotations,
+        resource_defs=graph.resources,
+        executor_def=graph.executor,
+    )
     def composed_job() -> None:
         evaluate_graph(graph)
 
