@@ -1,13 +1,13 @@
 import dataclasses
-from typing import Any, ClassVar, Dict, List, LiteralString, Tuple
+from typing import Any, ClassVar, Dict, List, Literal, Tuple
 
 import dagster
 import pydantic
 import pydantic.alias_generators
 
-DEFAULT_OUTPUT_KEY_NAME: LiteralString = "result"
-DEFAULT_OUTPUT_POINTER: LiteralString = f"/{DEFAULT_OUTPUT_KEY_NAME}"
-DEFAULT_INITIAL_DATA_NAME: LiteralString = "inputs"
+DEFAULT_OUTPUT_KEY_NAME: Literal["result"] = "result"
+DEFAULT_OUTPUT_POINTER: Literal["/result"] = "/result"
+DEFAULT_INITIAL_DATA_NAME: Literal["inputs"] = "inputs"
 
 
 class ApplicationModel(pydantic.BaseModel):
@@ -62,8 +62,8 @@ class GraphSpec(ApplicationModel):
 class GraphDefinition(ApplicationModel):
     """Definition of a composable graph."""
 
-    api_version: ClassVar[LiteralString] = "truevoid.dev/v1alpha1"
-    kind: ClassVar[LiteralString] = "ComposableGraph"
+    api_version: ClassVar[Literal["truevoid.dev/v1alpha1"]] = "truevoid.dev/v1alpha1"
+    kind: ClassVar[Literal["truevoid.dev/v1alpha1"]] = "ComposableGraph"
     metadata: Metadata = pydantic.Field(description="Metadata for the graph.")
     spec: GraphSpec = pydantic.Field(description="Specification of the graph.")
 
