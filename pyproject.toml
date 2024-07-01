@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "dagster-composable-graphs"
-version = "0.1.1"
+version = "0.1.2"
 description = "Library to create Dagster jobs from YAML"
 authors = ["Francisco Garcia Florez <francisco@truevoid.dev>"]
 readme = "README.md"
