@@ -73,7 +73,7 @@ To contribute to the documentation install dependencies and run locally:
 ```bash
 cd docs
 
-# Use the package manage appropriate to your system.
+# Use the package manager appropriate for your system.
 sudo apt-get install -yq npm
 
 npm install
