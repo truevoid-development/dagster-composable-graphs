@@ -7,7 +7,7 @@ readme = "README.md"
 packages = [{ include = "example" }]
 
 [tool.poetry.dependencies]
-python = ">=3.11,<3.13"
+python = ">=3.10,<3.13"
 dagster-webserver = "^1.7.4"
 dagster-composable-graphs = { path = ".." }
 
