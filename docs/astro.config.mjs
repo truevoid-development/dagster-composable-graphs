@@ -17,19 +17,8 @@ export default defineConfig({
         { label: "Overview", link: "/overview" },
         {
           label: "Guides",
-          items: [
-            {
-              label: "Getting Started",
-              link: "/guides/getting-started",
-            },
-          ],
+          autogenerate: { directory: "guides" },
         },
-        // {
-        //   label: "Reference",
-        //   autogenerate: {
-        //     directory: "reference",
-        //   },
-        // },
       ],
       pagination: false,
       expressiveCode: {

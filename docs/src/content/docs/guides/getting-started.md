@@ -3,7 +3,7 @@ title: Getting Started
 description: Example package that creates a dagster job from YAML
 ---
 
-This guide describes in detail the contents of the `example` package [on Github](https://github.com/truevoid-development/dagster-composable-graphs/tree/feat/add-docs/example)
+This guide describes in detail the contents of the `example` package [on Github](https://github.com/truevoid-development/dagster-composable-graphs/tree/feat/add-docs/examples/getting_started)
 and introduces dagster concepts.
 
 ## Motivation

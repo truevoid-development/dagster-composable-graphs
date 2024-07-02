@@ -65,3 +65,19 @@ Results in the following job, visualized using dagster webserver UI:
 <p align="center">
     <img width="512" src="docs/src/assets/graph.png">
 </p>
+
+## Documentation
+
+To contribute to the documentation install dependencies and run locally:
+
+```bash
+cd docs
+
+# Use the package manage appropriate to your system.
+sudo apt-get install -yq npm
+
+npm install
+npm run dev
+```
+
+By default the site is accessible at [http://localhost:4321/](http://localhost:4321/).
