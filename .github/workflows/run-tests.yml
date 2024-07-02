@@ -36,9 +36,9 @@ jobs:
           source venv/bin/activate
 
           pytest --cov-fail-under=100
-      - name: Run example
+      - name: Run example/getting_started
         run: |
-          cd example
+          cd examples/getting_started
 
           python -m venv venv
           source venv/bin/activate
@@ -46,4 +46,15 @@ jobs:
           poetry install
           dagster dev &
 
-          sleep 20
+          sleep 10
+      - name: Run example/advanced_usage
+        run: |
+          cd examples/advanced_usage
+
+          python -m venv venv
+          source venv/bin/activate
+
+          poetry install
+          dagster dev &
+
+                sleep 10

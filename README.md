@@ -81,3 +81,5 @@ npm run dev
 ```
 
 By default the site is accessible at [http://localhost:4321/](http://localhost:4321/).
+When opening a PR that modifies documentation that version of the site will be
+posted as a comment thanks to Cloudflare Pages integration.

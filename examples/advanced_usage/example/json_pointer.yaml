@@ -1,0 +1,23 @@
+apiVersion: truevoid.dev/v1alpha1
+kind: ComposableGraph
+metadata:
+  name: json-pointer
+spec:
+  inputs:
+    x: 2.0
+    y: 5.0
+  operations:
+    - name: add_and_multiply
+      function: example.jobs.add_and_multiply
+    - name: add
+      function: example.jobs.add
+    - name: add_and_multiply
+      inputs:
+        - x
+        - y
+    - name: add
+      inputs:
+        - node: add_and_multiply
+          pointer: /sum
+        - node: add_and_multiply
+          pointer: /product
